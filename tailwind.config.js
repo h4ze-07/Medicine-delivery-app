@@ -5,7 +5,18 @@ export default {
     "./src/**/*.{js,ts,jsx,tsx}",
   ],
   theme: {
-    extend: {},
+    extend: {
+      colors: {
+        mainBlue: '#2B60F0',
+        mainWhite: '#FFFFFF',
+      },
+      fontFamily: {
+        main: 'Poppins',
+      },
+      gridAutoRows: {
+        
+      }
+    },
   },
   plugins: [],
 }
