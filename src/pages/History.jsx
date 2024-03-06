@@ -4,7 +4,7 @@ import { DB_URL } from '../firebase';
 const History = () => {
 
     const [prevOrders, setPrevOrders] = useState([]);
-    const [ordersToShow, setOrdersToShow] = useState([]);
+    const [ordersToShow, setOrdersToShow] = useState([false]);
     const searchMailRef = useRef(null);
     const searchPhoneRef = useRef(null);
 
@@ -65,7 +65,7 @@ const History = () => {
                 >Search</button>
             </div>
 
-            {ordersToShow.length > 0 ?
+            {ordersToShow.length > 0 && ordersToShow[0] !== false ?
             <div className='my-[40px]'>
                 {ordersToShow.length !==0 && 
                 <div className='grid grid-cols-1 gap-[40px] max-h-[500px] overflow-y-scroll'>
@@ -93,11 +93,13 @@ const History = () => {
                 </div>}
 
             </div>
+            : ordersToShow[0] === false ?
+                <h2 className='mt-[50px] font-[300] text-[22px] text-gray-500 text-center'>Searching...</h2>
             :
-            <div>
-                <h2>You have no orders with this email and phone!</h2>
-                <p>Make sure You enter correct data</p>
-            </div>
+                <div className='text-center mt-[50px]'>
+                    <h2 className='text-[20px] font-[500]'>You have no orders with this email and phone!</h2>
+                    <p className='text-gray-500 font-[300] mt-[15px]'>Make sure You enter correct data</p>
+                </div>
             }
 
         </section>
