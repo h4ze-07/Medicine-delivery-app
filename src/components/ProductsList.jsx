@@ -1,6 +1,6 @@
-import React from 'react'
+import React, { useState } from 'react'
 
-const ProductsList = ({productsToShow, cart, setCart, handleCartUpdate}) => {
+const ProductsList = ({productsToShow, cart, setCart, handleCartUpdate, setIsProductModal}) => {
 
     const handleCartAdd = (item) => {
         
@@ -16,11 +16,12 @@ const ProductsList = ({productsToShow, cart, setCart, handleCartUpdate}) => {
                 ...item, cartId: cart.length === 0 ? 1 : cart[cart.length - 1].cartId + 1, quantity: 1,
             })
         }
+        setIsProductModal(true);
     }
 
 
     return (
-        <div className='flex-1 border-mainBlue grid grid-cols-3 justify-center max-h-[600px] gap-[10px] p-[10px] overflow-y-scroll'>
+        <div className='flex-1 border-mainBlue grid grid-cols-3 justify-center max-h-[600px] min-[1440px]:max-h-[850px] min-[1200px]:max-h-[700px] gap-[10px] p-[10px] overflow-y-scroll max-md:grid max-md:grid-cols-2 max-[425px]:grid-cols-1'>
             {productsToShow.map(item => (
                 <div className='px-[10px] py-[40px] flex flex-col items-center border-[2px] rounded-[20px] border-mainBlue' key={item.productId}>
                     <img src={item.img} alt={item.name} className='max-w-full h-[200px] object-contain object-center' />

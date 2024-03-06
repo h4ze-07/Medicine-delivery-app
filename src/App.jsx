@@ -4,12 +4,16 @@ import Root from "./pages/Root";
 import Shop from "./pages/Shop";
 import Cart from "./pages/Cart";
 import NotFound from "./pages/NotFound";
+import {child, push, ref, set} from "firebase/database";
+import { db } from "./firebase";
 import { DB_URL } from "./firebase";
 
 function App() {
 
   const [productsToShow, setProductsToShow] = useState([]);
   const [cart, setCart] = useState(JSON.parse(localStorage.getItem('cart')) || []);
+
+  /////////// FETCHING PRODUCTS ///////////
 
   const fetchProducts = async (URL) => {
     const response = await fetch(URL);
@@ -35,6 +39,22 @@ function App() {
     setProductsToShow(loadedProducts);
   }
 
+  /////////// FETCHING PRODUCTS ///////////
+
+  /////////// ORDER TO DB ///////////
+
+  const addNewOrder = (orderToDb) => {
+    const newOrderKey = push(child(ref(db), 'orders')).key;
+    set(ref(db, 'orders/' + newOrderKey), orderToDb)
+      .catch((error) => {
+          const errorMessage = error.message;
+          console.log(errorMessage);
+    });
+  }
+
+  /////////// ORDER TO DB ///////////
+
+
   const handleCartUpdate = (product) => {
     setCart([...cart, product]);
   }
@@ -42,10 +62,6 @@ function App() {
   useEffect(() => {
     localStorage.setItem('cart', JSON.stringify(cart))
   }, [cart])
-
-  // useEffect(() => {
-    
-  // }, [productsToShow])
 
 
   useEffect(() => {
@@ -63,7 +79,7 @@ function App() {
         },
         {
           path: '/cart',
-          element: <Cart cart={cart} />
+          element: <Cart cart={cart} setCart={setCart} addNewOrder={addNewOrder} />
         },
         {
           path: '*',
