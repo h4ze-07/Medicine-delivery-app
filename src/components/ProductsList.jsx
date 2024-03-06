@@ -21,7 +21,7 @@ const ProductsList = ({productsToShow, cart, setCart, handleCartUpdate, setIsPro
 
 
     return (
-        <div className='flex-1 border-mainBlue grid grid-cols-3 justify-center max-h-[600px] min-[1440px]:max-h-[850px] min-[1200px]:max-h-[700px] gap-[10px] p-[10px] overflow-y-scroll max-md:grid max-md:grid-cols-2 max-[425px]:grid-cols-1'>
+        <div className='flex-1 border-mainBlue grid grid-cols-3 justify-center max-h-[600px] min-[1440px]:max-h-[850px] min-[1200px]:max-h-[700px] gap-[10px] p-[10px] overflow-y-scroll max-md:grid max-md:grid-cols-2 max-[495px]:grid-cols-1'>
             {productsToShow.map(item => (
                 <div className='px-[10px] py-[40px] flex flex-col items-center border-[2px] rounded-[20px] border-mainBlue' key={item.productId}>
                     <img src={item.img} alt={item.name} className='max-w-full h-[200px] object-contain object-center' />
