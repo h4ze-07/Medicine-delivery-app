@@ -65,6 +65,7 @@ const History = () => {
                 >Search</button>
             </div>
 
+            {ordersToShow.length > 0 ?
             <div className='my-[40px]'>
                 {ordersToShow.length !==0 && 
                 <div className='grid grid-cols-1 gap-[40px] max-h-[500px] overflow-y-scroll'>
@@ -92,6 +93,12 @@ const History = () => {
                 </div>}
 
             </div>
+            :
+            <div>
+                <h2>You have no orders with this email and phone!</h2>
+                <p>Make sure You enter correct data</p>
+            </div>
+            }
 
         </section>
     )

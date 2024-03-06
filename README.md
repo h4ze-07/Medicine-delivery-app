@@ -6,7 +6,7 @@ To start project you need to:
 
 
 Link for site on hosting:
-            []
+            [https://m-d-a.netlify.app/]
 
 
 Shops, goods, and orders are hosted on Google Firebase. To connect to my db, i should 
