@@ -3,13 +3,15 @@ import { shops } from '../utils'
 import ProductsList from '../components/ProductsList'
 import { btnStyles } from '../utils/styles';
 import AddToCartModal from '../components/AddToCartModal';
+import { DB_URL } from '../firebase';
 
-const Shop = ({productsToShow, cart, setCart, handleCartUpdate}) => {
+const Shop = ({productsToShow, cart, setCart, handleCartUpdate, fetchProducts}) => {
     const [isProductModal, setIsProductModal] = useState(false);
     const [activeBtn, setActiveBtn] = useState(1);
 
     const handleBtnClick = (item) => {
         setActiveBtn(item.id)
+        fetchProducts(`${DB_URL}/${item.dbName}.json`)
     }
 
 

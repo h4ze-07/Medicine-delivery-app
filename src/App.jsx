@@ -7,6 +7,8 @@ import NotFound from "./pages/NotFound";
 import {child, push, ref, set} from "firebase/database";
 import { db } from "./firebase";
 import { DB_URL } from "./firebase";
+import History from "./pages/History";
+import Coupons from "./pages/Coupons";
 
 function App() {
 
@@ -75,11 +77,21 @@ function App() {
       children: [
         {
           path: '/',
-          element: <Shop productsToShow={productsToShow} cart={cart} handleCartUpdate={handleCartUpdate} setCart={setCart}/>
+          element: <Shop productsToShow={productsToShow} 
+                    cart={cart} handleCartUpdate={handleCartUpdate} 
+                    setCart={setCart} fetchProducts={fetchProducts} />
         },
         {
           path: '/cart',
           element: <Cart cart={cart} setCart={setCart} addNewOrder={addNewOrder} />
+        },
+        {
+          path: '/history',
+          element: <History />
+        },
+        {
+          path: '/coupons',
+          element: <Coupons />
         },
         {
           path: '*',
